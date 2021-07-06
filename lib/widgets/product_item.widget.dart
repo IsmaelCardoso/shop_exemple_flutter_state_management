@@ -7,7 +7,8 @@ import '../models/product.model.dart';
 class ProductItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ProductModel product = Provider.of<ProductModel>(context);
+    final ProductModel product =
+        Provider.of<ProductModel>(context, listen: false);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
@@ -31,14 +32,18 @@ class ProductItemWidget extends StatelessWidget {
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black54,
-          leading: IconButton(
-            color: Theme.of(context).accentColor,
-            icon: Icon(
-                product.isFavorite ? Icons.favorite : Icons.favorite_border),
-            onPressed: () {
-              product.toggleFavorite();
-            },
+          leading: Consumer<ProductModel>(
+            builder: (context, product, child) => IconButton(
+              color: Theme.of(context).accentColor,
+              icon: Icon(
+                  product.isFavorite ? Icons.favorite : Icons.favorite_border),
+              onPressed: () {
+                product.toggleFavorite();
+              },
+            ),
           ),
+          // Utilizar o Consumer sempre que precisar que as alterações sejam ouvidas já que o já que o provider esta como "listen: false"
+          // O child do Consumer deve ser usado quando temos um parte do componente que nunca muda, pode ser declarado no child e referenciado dentro do build
           title: Text(
             product.title,
             textAlign: TextAlign.center,

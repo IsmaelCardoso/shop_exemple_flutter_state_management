@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../util/app.routes.dart';
-import '../models/product.model.dart';
+import '../providers/product.model.dart';
 
 class ProductItemWidget extends StatelessWidget {
   @override

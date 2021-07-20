@@ -25,7 +25,7 @@ class OrdersProvider with ChangeNotifier {
     return [..._orders];
   }
 
-  void addOrder(List<CartItem> products, double total) {
+  void addOrder(CartProvider cart) {
     // final total = products.fold(
     //   0.0,
     //   (total, item) => total + (item.price * item.quantity),
@@ -35,9 +35,9 @@ class OrdersProvider with ChangeNotifier {
       0,
       OrderProvider(
         id: Random().nextDouble().toString(),
-        total: total,
+        total: cart.totalAmount,
         date: DateTime.now(),
-        products: products,
+        products: cart.items.values.toList(),
       ),
     );
 

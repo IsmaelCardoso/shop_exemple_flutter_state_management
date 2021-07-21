@@ -19,10 +19,14 @@ class OrderProvider {
 }
 
 class OrdersProvider with ChangeNotifier {
-  List<OrderProvider> _orders = [];
+  List<OrderProvider> _items = [];
 
-  List<OrderProvider> get orders {
-    return [..._orders];
+  List<OrderProvider> get items {
+    return [..._items];
+  }
+
+  int get itemsCount {
+    return _items.length;
   }
 
   void addOrder(CartProvider cart) {
@@ -31,7 +35,7 @@ class OrdersProvider with ChangeNotifier {
     //   (total, item) => total + (item.price * item.quantity),
     // );
 
-    _orders.insert(
+    _items.insert(
       0,
       OrderProvider(
         id: Random().nextDouble().toString(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/app_drawer.widget.dart';
 
 class OrdersScreen extends StatelessWidget {
   @override
@@ -7,6 +8,7 @@ class OrdersScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("My Orders"),
       ),
+      drawer: AppDrawerWidget(),
     );
   }
 }
